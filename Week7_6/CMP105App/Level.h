@@ -26,5 +26,5 @@ private:
 	sf::RenderWindow* window;
 	Input* input;
 
-	Bit bits[6];
+	Bit* bits[6];
 };

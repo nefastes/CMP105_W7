@@ -26,7 +26,7 @@ void Player::handleInput(float dt)
 	{
 		if (!hasFired)
 		{
-			bullet = spawn(getPosition() + sf::Vector2f(getSize().x / 2, getSize().y / 2));
+			spawn(getPosition() + sf::Vector2f(getSize().x / 2, getSize().y / 2));
 			hasFired = true;
 		}
 	}
@@ -34,13 +34,19 @@ void Player::handleInput(float dt)
 
 void Player::update(float dt) 
 {
-	if(hasFired)
+	if (hasFired)
+	{
 		bullet->update(dt);
+		if (bullet->getPosition().x > 1200)
+		{
+			hasFired = false;
+			delete bullet;
+		}
+	}
 }
 
-Bullet* Player::spawn(sf::Vector2f pos)
+void Player::spawn(sf::Vector2f pos)
 {
-	Bullet newBullet;
-	newBullet.setPosition(pos);
-	return &newBullet;
+	bullet = new Bullet;
+	bullet->setPosition(pos);
 }

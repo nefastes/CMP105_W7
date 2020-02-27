@@ -24,7 +24,7 @@ void Player::handleInput(float dt)
 	if (input->isKeyDown(sf::Keyboard::Enter))
 	{
 		input->setKeyUp(sf::Keyboard::Enter);
-		companion.moveToPlayer(this);
+		companion.moveToPlayer(this->getPosition());
 	}
 
 }

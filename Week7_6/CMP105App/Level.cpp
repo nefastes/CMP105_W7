@@ -6,12 +6,12 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	input = in;
 
 	// initialise game objects
-	
+	for (int i = 0; i < sizeof(bits) / sizeof(bits[0]); i++) bits[i] = new Bit();
 }
 
 Level::~Level()
 {
-
+	for (int i = 0; i < sizeof(bits) / sizeof(bits[0]); i++) delete bits[i];
 }
 
 // handle user input
@@ -23,16 +23,16 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
-	for(int i = 0; i <= 6; i++)
-		bits[i].update(dt);
+	for(int i = 0; i < 6; i++)
+		bits[i]->update(dt);
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-	for (int i = 0; i <= sizeof(bits)/sizeof(bits[0]); i++)
-		window->draw(bits[i]);
+	for (int i = 0; i < sizeof(bits)/sizeof(bits[0]); i++)
+		window->draw(*bits[i]);
 	endDraw();
 }
 

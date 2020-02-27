@@ -11,7 +11,7 @@ public:
 
 	void handleInput(float dt);
 	void update(float dt);
-	Bullet* spawn(sf::Vector2f pos);
+	void spawn(sf::Vector2f pos);
 	bool fired() { return hasFired; };
 	Bullet* getBullet() {
 		return bullet;
